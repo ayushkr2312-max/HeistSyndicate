@@ -1,0 +1,143 @@
+.sponsors-panel {
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sponsors-inner {
+  width: 90%;
+  max-width: 980px;
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+  position: relative;
+  z-index: 2;
+}
+
+.sponsors-header {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Tier rows ──────────────────────────────────────────────────────────── */
+.sponsor-tiers {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sponsor-tier {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sponsor-tier__label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--clr-muted);
+}
+
+.sponsor-tier__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.sponsor-tier__dot--platinum {
+  background: #e8e8e8;
+}
+.sponsor-tier__dot--gold {
+  background: var(--clr-accent);
+}
+.sponsor-tier__dot--silver {
+  background: #8a8a8a;
+}
+
+/* ─── Sponsor grid ───────────────────────────────────────────────────────── */
+.sponsor-grid {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: nowrap;
+}
+
+/* ─── Sponsor card ───────────────────────────────────────────────────────── */
+.sponsor-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  text-align: center;
+  flex: 1;
+  min-width: 160px;
+  min-height: 90px;
+  background: var(--clr-surface-2);
+  border: 1px solid var(--clr-border);
+  padding: 1.1rem 1.5rem;
+  transition: all 0.25s ease;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  text-decoration: none;
+}
+
+.sponsor-card:hover {
+  border-color: var(--clr-accent);
+  background: var(--clr-accent-dim);
+  transform: translateY(-3px);
+}
+
+.sponsor-card__name {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  letter-spacing: 0.1em;
+  color: var(--clr-white);
+  transition: color 0.2s ease;
+}
+
+.sponsor-card:hover .sponsor-card__name {
+  color: var(--clr-accent);
+}
+
+.sponsor-card__tagline {
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--clr-muted);
+}
+
+/* ─── CTA strip ──────────────────────────────────────────────────────────── */
+.sponsors-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 1.4rem;
+  border: 1px solid var(--clr-border);
+  background: var(--clr-accent-dim);
+}
+
+.sponsors-cta__text {
+  font-size: 0.82rem;
+  color: var(--clr-muted);
+}
+
+.sponsors-cta__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--clr-accent);
+  transition: gap 0.2s ease;
+}
+
+.sponsors-cta__link:hover {
+  gap: 0.85rem;
+}

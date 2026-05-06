@@ -1,0 +1,116 @@
+.about-panel {
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5vw;
+  align-items: center;
+  max-width: 1100px;
+  width: 90%;
+  position: relative;
+  z-index: 2;
+}
+
+/* ─── Image block ────────────────────────────────────────────────────────── */
+.about-image-wrap {
+  position: relative;
+  height: 420px;
+  clip-path: polygon(0 0, 90% 0, 100% 100%, 10% 100%);
+}
+
+.about-image-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      -55deg,
+      rgba(255,223,0,0.04) 0px,
+      rgba(255,223,0,0.04) 1px,
+      transparent 1px,
+      transparent 14px
+    ),
+    var(--clr-surface-2);
+  /* If you have a team photo, replace the above with:
+     background-image: url("/src/assets/team-photo.jpg");
+     background-size: cover;
+     background-position: center top;
+  */
+}
+
+.about-image-accent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--clr-accent);
+}
+
+.about-image-label {
+  position: absolute;
+  top: 20px;
+  right: -12px;
+  background: var(--clr-accent);
+  color: #000;
+  padding: 0.35rem 1rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+}
+
+/* ─── Text content ───────────────────────────────────────────────────────── */
+.about-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+/* ─── Stats ──────────────────────────────────────────────────────────────── */
+.about-stats {
+  display: flex;
+  gap: 2.5rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--clr-border);
+}
+
+.about-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.about-stat__value {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--clr-accent);
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.about-stat__label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--clr-muted);
+}
+
+/* ─── Right edge angular divider ────────────────────────────────────────── */
+.about-divider {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 100%;
+  background: rgba(8, 8, 8, 0.45);
+  clip-path: polygon(60px 0, 100% 0, 100% 100%, 0 100%);
+  z-index: 5;
+}

@@ -1,0 +1,205 @@
+.schedule-panel {
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.schedule-inner {
+  width: 90%;
+  max-width: 860px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.schedule-header {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Timeline ───────────────────────────────────────────────────────────── */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.timeline-row {
+  display: grid;
+  grid-template-columns: 120px 32px 1fr;
+  align-items: stretch;
+  min-height: 72px;
+}
+
+/* ─── Date column ────────────────────────────────────────────────────────── */
+.timeline-date {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 1rem;
+  text-align: right;
+  gap: 0.1rem;
+}
+
+.timeline-date__day {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  color: var(--clr-white);
+  letter-spacing: 0.06em;
+}
+
+.timeline-date__rest {
+  font-size: 0.65rem;
+  color: var(--clr-muted);
+}
+
+.timeline-date__time {
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: var(--clr-muted);
+}
+
+/* ─── Node (dot + vertical line) ────────────────────────────────────────── */
+.timeline-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timeline-node__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--clr-accent);
+  margin-top: 30px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 0 3px var(--clr-accent-dim);
+}
+
+.timeline-row--win .timeline-node__dot {
+  background: #4ade80;
+  box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.15);
+}
+
+.timeline-node__line {
+  flex: 1;
+  width: 1px;
+  background: var(--clr-border);
+}
+
+.timeline-row:last-child .timeline-node__line {
+  display: none;
+}
+
+/* ─── Card ───────────────────────────────────────────────────────────────── */
+.timeline-card {
+  margin: 10px 0 10px 1rem;
+  background: var(--clr-surface-2);
+  border: 1px solid var(--clr-border);
+  border-left: 2px solid var(--clr-accent);
+  padding: 0.75rem 1rem;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  transition: border-color 0.2s ease;
+}
+
+.timeline-row--win .timeline-card {
+  border-left-color: #4ade80;
+}
+
+.timeline-card:hover {
+  border-color: var(--clr-accent);
+  border-left-color: var(--clr-accent);
+}
+
+.timeline-card__top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.timeline-card__vs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.timeline-card__us {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  color: var(--clr-accent);
+  letter-spacing: 0.08em;
+}
+
+.timeline-card__sep {
+  font-size: 0.65rem;
+  color: var(--clr-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.timeline-card__opp {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  color: var(--clr-white);
+  letter-spacing: 0.08em;
+}
+
+.timeline-card__score {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: #4ade80;
+  letter-spacing: 0.06em;
+}
+
+.timeline-card__badge {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+}
+
+.timeline-card__badge--upcoming {
+  background: var(--clr-accent-dim);
+  color: var(--clr-accent);
+  border: 1px solid var(--clr-border);
+}
+
+.timeline-card__badge--win {
+  background: rgba(74, 222, 128, 0.12);
+  color: #4ade80;
+}
+
+.timeline-card__meta {
+  font-size: 0.65rem;
+  color: var(--clr-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.timeline-card__dot-sep {
+  color: var(--clr-accent);
+}
+
+/* ─── Right edge divider ─────────────────────────────────────────────────── */
+.schedule-divider {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 100%;
+  background: rgba(8, 8, 8, 0.45);
+  clip-path: polygon(60px 0, 100% 0, 100% 100%, 0 100%);
+  z-index: 5;
+}
