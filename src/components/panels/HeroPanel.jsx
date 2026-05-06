@@ -57,9 +57,7 @@ export default function HeroPanel({ isActive }) {
 
   return (
     <section className="panel hero-panel" ref={containerRef}>
-      {/* Corner accent brackets */}
-      <span className="hero-corner hero-corner-tl" aria-hidden="true" />
-      <span className="hero-corner hero-corner-br" aria-hidden="true" />
+
 
       <div className="hero-content">
         <h1 className="hero-title" ref={titleRef}>

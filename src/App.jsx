@@ -1,4 +1,6 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState, useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 import "./index.css";
 import { useSectionNavigator } from "./hooks/useSectionNavigator";
 import BottomNav from "./components/BottomNav";
@@ -31,6 +33,9 @@ const SECTION_PATH = [
 export default function App() {
   const [activeIdx, setActiveIdx] = useState(0);
 
+  const leftFrameRef = useRef(null);
+  const rightFrameRef = useRef(null);
+
   const handleIndexChange = useCallback((idx) => {
     setActiveIdx(idx);
   }, []);
@@ -38,6 +43,26 @@ export default function App() {
   const { activeIndex, goTo } = useSectionNavigator(PANELS.length, handleIndexChange);
   const current = SECTION_PATH[activeIndex];
   const isHero = activeIndex === 0;
+
+  useGSAP(() => {
+    if (!leftFrameRef.current || !rightFrameRef.current) return;
+    
+    // Animate the frames whenever activeIndex changes
+    gsap.to(leftFrameRef.current, {
+      height: 90 + Math.random() * 8 + "%",
+      top: 1 + Math.random() * 4 + "%",
+      duration: 0.9,
+      ease: "power3.out",
+    });
+
+    gsap.to(rightFrameRef.current, {
+      height: 90 + Math.random() * 8 + "%",
+      bottom: 1 + Math.random() * 4 + "%",
+      duration: 0.9,
+      ease: "power3.out",
+      delay: 0.1, // slight stagger
+    });
+  }, [activeIndex]);
 
   return (
     <>
@@ -48,6 +73,8 @@ export default function App() {
       <div className="premium-overlays" aria-hidden="true">
         <div className="premium-grid" />
         <div className="premium-grain" />
+        <div className="global-frame global-frame-left" ref={leftFrameRef} />
+        <div className="global-frame global-frame-right" ref={rightFrameRef} />
       </div>
 
       <div className="section-stage">
