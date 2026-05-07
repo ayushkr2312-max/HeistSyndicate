@@ -62,37 +62,40 @@
   filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.15));
 }
 
-/* ─── Corner brackets around title ──────────────────────────────────────────── */
-.hero-corner {
+/* ─── Background + / x elements ───────────────────────────────────────────── */
+.hero-deco-layer {
   position: fixed;
-  width: 60px;
-  height: 60px;
-  border-color: var(--clr-accent);
-  border-style: solid;
-  border-width: 0;
-  opacity: 0.55;
-  transition: opacity 0.4s ease;
-  z-index: 5;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
 }
 
-.hero-corner-tl {
-  top: 35%;
-  left: 3%;
-  transform: translateY(-50%);
-  border-top-width: 2px;
-  border-left-width: 2px;
+.hero-deco {
+  position: absolute;
+  display: block;
+  color: rgba(255, 223, 0, 0.34);
+  filter: drop-shadow(0 0 10px rgba(255, 223, 0, 0.11));
+  transform-origin: center;
 }
 
-.hero-corner-br {
-  top: 65%;
-  right: 3%;
-  transform: translateY(-50%);
-  border-bottom-width: 2px;
-  border-right-width: 2px;
+.hero-deco::before,
+.hero-deco::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: var(--deco-thickness, 1.2px);
+  background: currentColor;
+  transform: translate(-50%, -50%);
 }
 
-.hero-panel:hover .hero-corner {
-  opacity: 0.8;
+.hero-deco::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.hero-deco--x {
+  transform: rotate(45deg);
 }
 
 /* ─── Content ────────────────────────────────────────────────────────────── */

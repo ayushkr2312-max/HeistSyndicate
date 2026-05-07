@@ -72,7 +72,9 @@ export default function App() {
       />
       <div className="premium-overlays" aria-hidden="true">
         <div className="premium-diagonals" />
-        <div className="premium-grid" />
+        <div className="premium-grid">
+          <div className="premium-grid-pulse" />
+        </div>
         <div className="premium-scanlines" />
         <div className="premium-grain" />
         <div className="global-frame global-frame-left" ref={leftFrameRef} />
