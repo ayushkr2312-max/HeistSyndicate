@@ -72,6 +72,7 @@
 .contact-field input:focus,
 .contact-field textarea:focus {
   border-color: var(--clr-accent);
+  box-shadow: 0 0 16px rgba(255, 223, 0, 0.1);
 }
 
 .contact-submit {
@@ -93,6 +94,7 @@
 .contact-submit:hover {
   background: var(--clr-accent);
   transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(255, 223, 0, 0.25);
 }
 
 .contact-submit__arrow {

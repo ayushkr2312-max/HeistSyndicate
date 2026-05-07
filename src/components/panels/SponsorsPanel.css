@@ -1,8 +1,10 @@
 .sponsors-panel {
   background: transparent;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .sponsors-inner {
@@ -10,9 +12,10 @@
   max-width: 980px;
   display: flex;
   flex-direction: column;
-  gap: 2.25rem;
+  gap: 1.5rem;
   position: relative;
   z-index: 2;
+  padding: 1.5rem 0 2rem;
 }
 
 .sponsors-header {
@@ -24,7 +27,7 @@
 .sponsor-tiers {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 .sponsor-tier {
@@ -90,6 +93,7 @@
   border-color: var(--clr-accent);
   background: var(--clr-accent-dim);
   transform: translateY(-3px);
+  box-shadow: 0 8px 32px rgba(255, 223, 0, 0.1);
 }
 
 .sponsor-card__name {

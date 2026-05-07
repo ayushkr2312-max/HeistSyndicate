@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import "./HeroPanel.css";
+import finalsLogo from "../assets/finals-logo.png";
 
 gsap.registerPlugin(useGSAP);
 
@@ -57,7 +58,14 @@ export default function HeroPanel({ isActive }) {
 
   return (
     <section className="panel hero-panel" ref={containerRef}>
+      <div className="hero-badge" aria-hidden="true">
+        <span className="hero-badge__line" />
+        <img src={finalsLogo} alt="The Finals" className="hero-badge__logo" />
+        <span className="hero-badge__line" />
+      </div>
 
+      <div className="hero-corner hero-corner-tl" aria-hidden="true" />
+      <div className="hero-corner hero-corner-br" aria-hidden="true" />
 
       <div className="hero-content">
         <h1 className="hero-title" ref={titleRef}>
@@ -65,6 +73,12 @@ export default function HeroPanel({ isActive }) {
           <span className="hero-title__main">Heist</span>
           <span className="hero-title__sub">Syndicate</span>
         </h1>
+        <p className="hero-tagline">Compete. Dominate. Repeat.</p>
+      </div>
+
+      <div className="hero-scroll-hint" aria-hidden="true">
+        <span className="hero-scroll-hint__text">Scroll</span>
+        <span className="hero-scroll-hint__line" />
       </div>
     </section>
   );

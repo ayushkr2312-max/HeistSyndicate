@@ -29,17 +29,20 @@
   background:
     repeating-linear-gradient(
       -55deg,
-      rgba(255,223,0,0.04) 0px,
-      rgba(255,223,0,0.04) 1px,
+      rgba(255,223,0,0.06) 0px,
+      rgba(255,223,0,0.06) 1px,
       transparent 1px,
       transparent 14px
     ),
+    repeating-linear-gradient(
+      55deg,
+      rgba(255,223,0,0.03) 0px,
+      rgba(255,223,0,0.03) 1px,
+      transparent 1px,
+      transparent 14px
+    ),
+    radial-gradient(ellipse at 30% 50%, rgba(255,223,0,0.06) 0%, transparent 70%),
     var(--clr-surface-2);
-  /* If you have a team photo, replace the above with:
-     background-image: url("/src/assets/team-photo.jpg");
-     background-size: cover;
-     background-position: center top;
-  */
 }
 
 .about-image-accent {
@@ -93,6 +96,7 @@
   color: var(--clr-accent);
   letter-spacing: 0.04em;
   line-height: 1;
+  text-shadow: 0 0 24px rgba(255, 223, 0, 0.25);
 }
 
 .about-stat__label {

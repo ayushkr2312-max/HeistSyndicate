@@ -71,10 +71,15 @@ export default function App() {
         aria-hidden="true"
       />
       <div className="premium-overlays" aria-hidden="true">
+        <div className="premium-diagonals" />
         <div className="premium-grid" />
+        <div className="premium-scanlines" />
         <div className="premium-grain" />
         <div className="global-frame global-frame-left" ref={leftFrameRef} />
         <div className="global-frame global-frame-right" ref={rightFrameRef} />
+        <div className="crosshair crosshair--tl" />
+        <div className="crosshair crosshair--br" />
+        <div className="reticle" />
       </div>
 
       <div className="section-stage">

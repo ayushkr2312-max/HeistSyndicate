@@ -118,10 +118,8 @@ button {
   inset: 0;
   opacity: 0.018;
   background-image:
-    /* Fine mesh */
     linear-gradient(to right, rgba(255, 255, 255, 0.85) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.85) 1px, transparent 1px),
-    /* Coarser scaffold every ~5 fine cells */
     linear-gradient(to right, rgba(255, 255, 255, 0.55) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.55) 1px, transparent 1px);
   background-size:
@@ -129,6 +127,64 @@ button {
     10px 10px,
     50px 50px,
     50px 50px;
+}
+
+/* ─── Geometric Diagonal Lines (Banner-inspired) ───────────────────────── */
+.premium-diagonals {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0.07;
+}
+
+.premium-diagonals::before,
+.premium-diagonals::after {
+  content: "";
+  position: absolute;
+  background: var(--clr-accent);
+}
+
+.premium-diagonals::before {
+  width: 200%;
+  height: 1px;
+  top: 50%;
+  left: -50%;
+  transform: rotate(-22deg);
+  transform-origin: center;
+  box-shadow:
+    0 -180px 0 0 var(--clr-accent),
+    0 180px 0 0 var(--clr-accent),
+    0 -360px 0 0 var(--clr-accent),
+    0 360px 0 0 var(--clr-accent);
+}
+
+.premium-diagonals::after {
+  width: 200%;
+  height: 1px;
+  top: 50%;
+  left: -50%;
+  transform: rotate(22deg);
+  transform-origin: center;
+  box-shadow:
+    0 -180px 0 0 var(--clr-accent),
+    0 180px 0 0 var(--clr-accent),
+    0 -360px 0 0 var(--clr-accent),
+    0 360px 0 0 var(--clr-accent);
+}
+
+/* ─── Scan Lines ────────────────────────────────────────────────────────── */
+.premium-scanlines {
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    rgba(255, 255, 255, 0.04) 2px,
+    rgba(255, 255, 255, 0.04) 4px
+  );
+  pointer-events: none;
 }
 
 .premium-grain {
@@ -146,25 +202,95 @@ button {
   border-color: var(--clr-accent);
   border-style: solid;
   border-width: 0;
-  width: 24px;
-  height: 95%; /* base height, animated via JS */
+  width: 28px;
+  height: 95%;
   z-index: 10;
   pointer-events: none;
-  opacity: 0.5;
+  opacity: 0.45;
 }
 
 .global-frame-left {
-  top: 2%; /* base top, animated via JS */
+  top: 2%;
   left: 24px;
   border-left-width: 2px;
   border-top-width: 2px;
 }
 
 .global-frame-right {
-  bottom: 2%; /* base bottom, animated via JS */
+  bottom: 2%;
   right: 24px;
   border-right-width: 2px;
   border-bottom-width: 2px;
+}
+
+/* ─── Crosshair Corner Elements (Banner-inspired) ──────────────────────── */
+.crosshair {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.crosshair::before,
+.crosshair::after {
+  content: "";
+  position: absolute;
+  background: var(--clr-accent);
+}
+
+.crosshair--tl { top: 28px; left: 56px; }
+.crosshair--tl::before { width: 18px; height: 2px; top: 0; left: 0; }
+.crosshair--tl::after  { width: 2px; height: 18px; top: 0; left: 0; }
+
+.crosshair--tr { top: 28px; right: 56px; }
+.crosshair--tr::before { width: 18px; height: 2px; top: 0; right: 0; }
+.crosshair--tr::after  { width: 2px; height: 18px; top: 0; right: 0; }
+
+.crosshair--bl { bottom: 28px; left: 56px; }
+.crosshair--bl::before { width: 18px; height: 2px; bottom: 0; left: 0; }
+.crosshair--bl::after  { width: 2px; height: 18px; bottom: 0; left: 0; }
+
+.crosshair--br { bottom: 28px; right: 56px; }
+.crosshair--br::before { width: 18px; height: 2px; bottom: 0; right: 0; }
+.crosshair--br::after  { width: 2px; height: 18px; bottom: 0; right: 0; }
+
+/* ─── Targeting Reticle (top-right, banner-inspired) ────────────────────── */
+.reticle {
+  position: absolute;
+  top: 32px;
+  right: 60px;
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid var(--clr-accent);
+  border-radius: 50%;
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+.reticle::before,
+.reticle::after {
+  content: "";
+  position: absolute;
+  background: var(--clr-accent);
+}
+
+.reticle::before {
+  width: 12px;
+  height: 1.5px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.reticle::after {
+  width: 1.5px;
+  height: 12px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .section-world {
@@ -196,8 +322,14 @@ button {
   height: 100vh;
   position: relative;
   overflow: hidden;
-  padding-bottom: var(--nav-h);
+  padding-top: calc(var(--nav-h) + 12px);
+  padding-bottom: 0;
   background: transparent;
+}
+
+.hero-panel {
+  padding-top: 0;
+  padding-bottom: var(--nav-h);
 }
 
 /* Diagonal right-edge clip — gives angular panel dividers */
@@ -222,15 +354,18 @@ button {
   text-transform: uppercase;
   color: var(--clr-accent);
   margin-bottom: 0.5rem;
+  text-shadow: 0 0 20px rgba(255, 223, 0, 0.3);
 }
 
 .section-title {
   font-size: clamp(2.4rem, 5vw, 4.5rem);
   color: var(--clr-white);
+  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.6);
 }
 
 .section-title span {
   color: var(--clr-accent);
+  text-shadow: 0 0 40px rgba(255, 223, 0, 0.25);
 }
 
 .section-body {
@@ -245,8 +380,9 @@ button {
   display: block;
   width: 48px;
   height: 2px;
-  background: var(--clr-accent);
+  background: linear-gradient(90deg, var(--clr-accent), transparent);
   margin-bottom: 1.5rem;
+  box-shadow: 0 0 12px rgba(255, 223, 0, 0.3);
 }
 
 /* ─── Scrollbar ──────────────────────────────────────────────────────────── */
