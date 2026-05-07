@@ -8,7 +8,7 @@ gsap.registerPlugin(useGSAP);
 
 export default function HeroPanel({ isActive }) {
   const containerRef = useRef(null);
-  const titleRef     = useRef(null);
+  const titleRef = useRef(null);
   const hasExitedRef = useRef(false);
   const decoRefs = useRef([]);
   const decorativeSymbols = useMemo(() => {
@@ -45,9 +45,9 @@ export default function HeroPanel({ isActive }) {
   // ── Initial entry animation ────────────────────────────────────────────────
   useGSAP(() => {
     const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
-    tl.from(".hero-title__the",  { opacity: 0, y: -20, duration: 0.7 }, 0.3)
-      .from(".hero-title__main", { opacity: 0, y: 60,  duration: 1.1, skewX: -3 }, 0.5)
-      .from(".hero-title__sub",  { opacity: 0, y: 30,  duration: 0.8 }, 0.85)
+    tl.from(".hero-title__the", { opacity: 0, y: -20, duration: 0.7 }, 0.3)
+      .from(".hero-title__main", { opacity: 0, y: 60, duration: 1.1, skewX: -3 }, 0.5)
+      .from(".hero-title__sub", { opacity: 0, y: 30, duration: 0.8 }, 0.85)
       .from(".hero-deco", {
         opacity: 0, scale: 0.5, duration: 1.0, stagger: 0.2,
       }, 0.2);
@@ -55,7 +55,7 @@ export default function HeroPanel({ isActive }) {
 
   // ── Tunnel exit / re-entry ─────────────────────────────────────────────────
   useEffect(() => {
-    const title     = titleRef.current;
+    const title = titleRef.current;
     if (!title) return;
 
     if (!isActive) {
