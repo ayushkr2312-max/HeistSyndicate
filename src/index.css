@@ -13,7 +13,7 @@
   --font-display:    "Orbitron", "Impact", "Arial Black", sans-serif;
   --font-body:       "Inter", system-ui, sans-serif;
 
-  --nav-h:           64px;
+  --nav-h:           48px;
   --panel-w:         100vw;
   --panel-count:     6;
 }

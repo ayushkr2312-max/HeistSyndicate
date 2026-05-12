@@ -61,29 +61,37 @@ export default function BottomNav({ panels, activeIdx, onNavigate, isHero }) {
       role="navigation"
       aria-label="Site navigation"
     >
-      <div className="bottom-nav__logo" aria-label="The Heist Syndicate">
-        <img src={logo} alt="The Heist Syndicate" className="bottom-nav__logo-img" />
-      </div>
+      <div className="bottom-nav__shell">
+        <div className="bottom-nav__liquid" aria-hidden="true">
+          <span className="bottom-nav__blob bottom-nav__blob--a" />
+          <span className="bottom-nav__blob bottom-nav__blob--b" />
+        </div>
+        <div className="bottom-nav__inner">
+          <div className="bottom-nav__logo" aria-label="The Heist Syndicate">
+            <img src={logo} alt="The Heist Syndicate" className="bottom-nav__logo-img" />
+          </div>
 
-      <ul className="bottom-nav__links" role="list">
-        {panels.map((p, i) => (
-          <li key={p.id}>
-            <button
-              className={`bottom-nav__link ${i === activeIdx ? "bottom-nav__link--active" : ""}`}
-              onClick={() => onNavigate(i)}
-              aria-current={i === activeIdx ? "page" : undefined}
-            >
-              {p.label}
-              <span className="bottom-nav__indicator" aria-hidden="true" />
-            </button>
-          </li>
-        ))}
-      </ul>
+          <ul className="bottom-nav__links" role="list">
+            {panels.map((p, i) => (
+              <li key={p.id}>
+                <button
+                  className={`bottom-nav__link ${i === activeIdx ? "bottom-nav__link--active" : ""}`}
+                  onClick={() => onNavigate(i)}
+                  aria-current={i === activeIdx ? "page" : undefined}
+                >
+                  {p.label}
+                  <span className="bottom-nav__indicator" aria-hidden="true" />
+                </button>
+              </li>
+            ))}
+          </ul>
 
-      <div className="bottom-nav__socials">
-        <a href="#" className="bottom-nav__social" aria-label="Twitter / X">{ICON_TW}</a>
-        <a href="#" className="bottom-nav__social" aria-label="Discord">{ICON_DC}</a>
-        <a href="#" className="bottom-nav__social" aria-label="YouTube">{ICON_YT}</a>
+          <div className="bottom-nav__socials">
+            <a href="#" className="bottom-nav__social" aria-label="Twitter / X">{ICON_TW}</a>
+            <a href="#" className="bottom-nav__social" aria-label="Discord">{ICON_DC}</a>
+            <a href="#" className="bottom-nav__social" aria-label="YouTube">{ICON_YT}</a>
+          </div>
+        </div>
       </div>
     </nav>
   );
