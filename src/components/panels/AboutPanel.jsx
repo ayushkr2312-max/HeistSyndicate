@@ -1,3 +1,4 @@
+import logo from "../../assets/Heist-Syndicate-Logo-4.png";
 import "./AboutPanel.css";
 
 const STATS = [
@@ -11,12 +12,10 @@ export default function AboutPanel() {
   return (
     <section className="panel about-panel">
       <div className="about-inner">
-        {/* Left: image / visual block */}
+        {/* Left: brand mark */}
         <div className="about-image-wrap">
-          <div className="about-image-bg" aria-hidden="true" />
-          <div className="about-image-accent" aria-hidden="true" />
-          <div className="about-image-label">
-            <span>Founded 2024</span>
+          <div className="about-logo">
+            <img src={logo} alt="The Heist Syndicate" className="about-logo__img" />
           </div>
         </div>
 
