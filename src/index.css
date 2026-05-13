@@ -7,15 +7,15 @@
   --clr-accent-dim:  rgba(255, 223, 0, 0.18);
   --clr-white:       #f0f0f0;
   --clr-muted:       rgba(240, 240, 240, 0.45);
-  --clr-border:      rgba(255, 223, 0, 0.25);
+  --clr-border:      rgba(255, 223, 0, 0.22);
   --clr-nav-bg:      rgba(10, 10, 10, 0.82);
 
   --font-display:    "Orbitron", "Impact", "Arial Black", sans-serif;
   --font-body:       "Inter", system-ui, sans-serif;
 
-  --nav-h:           64px;
+  --side-nav-w:      190px;
   --panel-w:         100vw;
-  --panel-count:     6;
+  --panel-count:     8;
 }
 
 /* ─── Reset & Base ────────────────────────────────────────────────────────── */
@@ -39,7 +39,6 @@ body {
   line-height: 1.6;
   overflow: hidden;
   height: 100%;
-  /* Grain noise overlay via SVG filter */
   position: relative;
 }
 
@@ -71,19 +70,31 @@ button {
   position: fixed;
   inset: 0;
   background-image: url("/src/assets/background.png");
-  background-size: cover;
+  background-size: contain;
   background-position: center;
+  background-repeat: no-repeat;
   z-index: 0;
   transition: opacity 520ms ease;
   will-change: opacity;
   pointer-events: none;
 }
 
+/* On wide screens, scale the image to fit the VISIBLE content area
+   (viewport minus the side-rail) and anchor it to the left edge so its
+   center lines up exactly with the centered hero title. This also shows
+   more of the whole image (no edge cropping). */
+@media (min-width: 901px) {
+  .global-bg {
+    background-size: calc(100vw - var(--side-nav-w)) auto;
+    background-position: 0 center;
+  }
+}
+
 .global-bg::after {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: 
+  background-image:
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E"),
     linear-gradient(to bottom, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.1) 100%);
   background-repeat: repeat, no-repeat;
@@ -119,10 +130,10 @@ button {
   opacity: 1;
   overflow: hidden;
   background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.028) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.028) 1px, transparent 1px),
-    linear-gradient(to right, rgba(255, 255, 255, 0.014) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.014) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+    linear-gradient(to right, rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
   background-size:
     10px 10px,
     10px 10px,
@@ -136,16 +147,16 @@ button {
   pointer-events: none;
   will-change: transform, opacity;
   background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
-    linear-gradient(to right, rgba(255, 255, 255, 0.028) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to right, rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.022) 1px, transparent 1px),
     linear-gradient(
       to bottom,
       rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.08) 36%,
-      rgba(255, 255, 255, 0.16) 50%,
-      rgba(255, 255, 255, 0.08) 64%,
+      rgba(255, 255, 255, 0.07) 36%,
+      rgba(255, 223, 0, 0.09) 50%,
+      rgba(255, 255, 255, 0.07) 64%,
       rgba(255, 255, 255, 0) 100%
     );
   background-size:
@@ -156,7 +167,7 @@ button {
     100% 34%;
   opacity: 0;
   transform: translate3d(0, -58%, 0);
-  animation: gridPulseSweep 16s cubic-bezier(0.42, 0, 0.2, 1) infinite;
+  animation: gridPulseSweep 18s cubic-bezier(0.42, 0, 0.2, 1) infinite;
 }
 
 @keyframes gridPulseSweep {
@@ -165,13 +176,13 @@ button {
     opacity: 0;
   }
   22% {
-    opacity: 0.028;
+    opacity: 0.03;
   }
   50% {
-    opacity: 0.062;
+    opacity: 0.055;
   }
   78% {
-    opacity: 0.028;
+    opacity: 0.03;
   }
   100% {
     transform: translate3d(0, 58%, 0);
@@ -179,174 +190,46 @@ button {
   }
 }
 
-/* ─── Geometric Diagonal Lines (Banner-inspired) ───────────────────────── */
-.premium-diagonals {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  opacity: 0.07;
-}
-
-.premium-diagonals::before,
-.premium-diagonals::after {
-  content: "";
-  position: absolute;
-  background: var(--clr-accent);
-}
-
-.premium-diagonals::before {
-  width: 200%;
-  height: 1px;
-  top: 50%;
-  left: -50%;
-  transform: rotate(-22deg);
-  transform-origin: center;
-  box-shadow:
-    0 -180px 0 0 var(--clr-accent),
-    0 180px 0 0 var(--clr-accent),
-    0 -360px 0 0 var(--clr-accent),
-    0 360px 0 0 var(--clr-accent);
-}
-
-.premium-diagonals::after {
-  width: 200%;
-  height: 1px;
-  top: 50%;
-  left: -50%;
-  transform: rotate(22deg);
-  transform-origin: center;
-  box-shadow:
-    0 -180px 0 0 var(--clr-accent),
-    0 180px 0 0 var(--clr-accent),
-    0 -360px 0 0 var(--clr-accent),
-    0 360px 0 0 var(--clr-accent);
-}
-
-/* ─── Scan Lines ────────────────────────────────────────────────────────── */
-.premium-scanlines {
-  position: absolute;
-  inset: 0;
-  opacity: 0.03;
-  background: repeating-linear-gradient(
-    to bottom,
-    transparent 0px,
-    transparent 2px,
-    rgba(255, 255, 255, 0.04) 2px,
-    rgba(255, 255, 255, 0.04) 4px
-  );
-  pointer-events: none;
-}
-
 .premium-grain {
   position: absolute;
   inset: 0;
-  opacity: 0.03;
+  opacity: 0.025;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 200px 200px;
 }
 
-/* ─── Global Frames ──────────────────────────────────────────────────────── */
+/* ─── Global HUD bracket frames ──────────────────────────────────────────── */
 .global-frame {
   position: absolute;
   border-color: var(--clr-accent);
   border-style: solid;
   border-width: 0;
-  width: 28px;
+  width: 22px;
   height: 95%;
   z-index: 10;
   pointer-events: none;
-  opacity: 0.45;
+  opacity: 0.38;
 }
 
 .global-frame-left {
   top: 2%;
-  left: 24px;
-  border-left-width: 2px;
-  border-top-width: 2px;
+  left: 22px;
+  border-left-width: 1px;
+  border-top-width: 1px;
 }
 
 .global-frame-right {
   bottom: 2%;
-  right: 24px;
-  border-right-width: 2px;
-  border-bottom-width: 2px;
-}
-
-/* ─── Crosshair Corner Elements (Banner-inspired) ──────────────────────── */
-.crosshair {
-  position: absolute;
-  width: 32px;
-  height: 32px;
-  z-index: 10;
-  pointer-events: none;
-  opacity: 0.5;
-}
-
-.crosshair::before,
-.crosshair::after {
-  content: "";
-  position: absolute;
-  background: var(--clr-accent);
-}
-
-.crosshair--tl { top: 28px; left: 56px; }
-.crosshair--tl::before { width: 18px; height: 2px; top: 0; left: 0; }
-.crosshair--tl::after  { width: 2px; height: 18px; top: 0; left: 0; }
-
-.crosshair--tr { top: 28px; right: 56px; }
-.crosshair--tr::before { width: 18px; height: 2px; top: 0; right: 0; }
-.crosshair--tr::after  { width: 2px; height: 18px; top: 0; right: 0; }
-
-.crosshair--bl { bottom: 28px; left: 56px; }
-.crosshair--bl::before { width: 18px; height: 2px; bottom: 0; left: 0; }
-.crosshair--bl::after  { width: 2px; height: 18px; bottom: 0; left: 0; }
-
-.crosshair--br { bottom: 28px; right: 56px; }
-.crosshair--br::before { width: 18px; height: 2px; bottom: 0; right: 0; }
-.crosshair--br::after  { width: 2px; height: 18px; bottom: 0; right: 0; }
-
-/* ─── Targeting Reticle (top-right, banner-inspired) ────────────────────── */
-.reticle {
-  position: absolute;
-  top: 32px;
-  right: 60px;
-  width: 40px;
-  height: 40px;
-  border: 1.5px solid var(--clr-accent);
-  border-radius: 50%;
-  z-index: 10;
-  pointer-events: none;
-  opacity: 0.3;
-}
-
-.reticle::before,
-.reticle::after {
-  content: "";
-  position: absolute;
-  background: var(--clr-accent);
-}
-
-.reticle::before {
-  width: 12px;
-  height: 1.5px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.reticle::after {
-  width: 1.5px;
-  height: 12px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  right: 22px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
 }
 
 .section-world {
   position: absolute;
   inset: 0;
-  width: 500vw;
+  width: 700vw;
   height: 200vh;
   will-change: transform;
   transition: transform 980ms cubic-bezier(0.16, 1, 0.3, 1);
@@ -376,14 +259,13 @@ button {
   height: 100vh;
   position: relative;
   overflow: hidden;
-  padding-top: calc(var(--nav-h) + 12px);
-  padding-bottom: 0;
+  padding: 1.5rem clamp(2rem, 4vw, 3.5rem) 1.5rem clamp(1.5rem, 3vw, 2.5rem);
   background: transparent;
 }
 
 .hero-panel {
   padding-top: 0;
-  padding-bottom: var(--nav-h);
+  padding-bottom: 0;
 }
 
 /* Diagonal right-edge clip — gives angular panel dividers */
@@ -397,6 +279,13 @@ button {
   background: rgba(8, 8, 8, 0.45);
   clip-path: polygon(60px 0, 100% 0, 100% 100%, 0 100%);
   z-index: 10;
+}
+
+/* Reserve room for side-nav on wide screens so content doesn't slide under it */
+@media (min-width: 901px) {
+  .panel {
+    padding-right: calc(var(--side-nav-w) + 1.25rem);
+  }
 }
 
 /* ─── Shared Section Headings ────────────────────────────────────────────── */

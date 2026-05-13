@@ -92,7 +92,6 @@
 .sponsor-card:hover {
   border-color: var(--clr-accent);
   background: var(--clr-accent-dim);
-  transform: translateY(-3px);
   box-shadow: 0 8px 32px rgba(255, 223, 0, 0.1);
 }
 

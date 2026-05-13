@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 import "./ContactPanel.css";
 
 const SOCIALS = [
@@ -8,7 +10,8 @@ const SOCIALS = [
   { label: "YouTube",      href: "#", handle: "The Heist Syndicate"  },
 ];
 
-export default function ContactPanel() {
+export default function ContactPanel({ isActive }) {
+  const rootRef = useRef(null);
   const [sent, setSent] = useState(false);
 
   function handleSubmit(e) {
@@ -16,15 +19,39 @@ export default function ContactPanel() {
     setSent(true);
   }
 
+  useGSAP(() => {
+    if (!isActive) return;
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+    tl.fromTo(".contact-eyebrow",
+      { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.55 }, 0.05);
+    tl.fromTo(".contact-accent",
+      { scaleX: 0, transformOrigin: "left center" },
+      { scaleX: 1, duration: 0.55 }, 0.15);
+    tl.fromTo(".contact-title",
+      { opacity: 0, y: 28, skewX: -2 },
+      { opacity: 1, y: 0, skewX: 0, duration: 0.8 }, 0.2);
+    tl.fromTo(".contact-body",
+      { opacity: 0, y: 18 },
+      { opacity: 1, y: 0, duration: 0.65 }, 0.35);
+    tl.fromTo(".contact-field, .contact-submit",
+      { opacity: 0, y: 18 },
+      { opacity: 1, y: 0, duration: 0.55, stagger: 0.07 }, 0.4);
+    tl.fromTo(".contact-socials-wrap",
+      { opacity: 0, x: 30 },
+      { opacity: 1, x: 0, duration: 0.7 }, 0.3);
+    tl.fromTo(".contact-social",
+      { opacity: 0, x: 16 },
+      { opacity: 1, x: 0, duration: 0.45, stagger: 0.07 }, 0.55);
+  }, { dependencies: [isActive], scope: rootRef });
+
   return (
-    <section className="panel contact-panel">
+    <section className="panel contact-panel" ref={rootRef}>
       <div className="contact-inner">
-        {/* Left: form */}
         <div className="contact-form-wrap">
-          <p className="section-eyebrow">Get in Touch</p>
-          <span className="accent-line" />
-          <h2 className="section-title">Join the <span>Heist</span></h2>
-          <p className="section-body">
+          <p className="section-eyebrow contact-eyebrow">Get in Touch</p>
+          <span className="accent-line contact-accent" />
+          <h2 className="section-title contact-title">Join the <span>Heist</span></h2>
+          <p className="section-body contact-body">
             Want to try out, partner up, or just talk strategy? Drop us a
             message and we'll get back to you within 48 hours.
           </p>
@@ -62,7 +89,6 @@ export default function ContactPanel() {
           )}
         </div>
 
-        {/* Right: socials */}
         <div className="contact-socials-wrap">
           <p className="contact-socials-title">Find Us Online</p>
           <ul className="contact-socials">

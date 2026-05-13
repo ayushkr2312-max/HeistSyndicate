@@ -1,3 +1,6 @@
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 import "./SchedulePanel.css";
 
 const MATCHES = [
@@ -45,14 +48,32 @@ const MATCHES = [
   },
 ];
 
-export default function SchedulePanel() {
+export default function SchedulePanel({ isActive }) {
+  const rootRef = useRef(null);
+
+  useGSAP(() => {
+    if (!isActive) return;
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+    tl.fromTo(".schedule-eyebrow",
+      { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.55 }, 0.05);
+    tl.fromTo(".schedule-accent",
+      { scaleX: 0, transformOrigin: "left center" },
+      { scaleX: 1, duration: 0.55 }, 0.15);
+    tl.fromTo(".schedule-title",
+      { opacity: 0, y: 28, skewX: -2 },
+      { opacity: 1, y: 0, skewX: 0, duration: 0.8 }, 0.2);
+    tl.fromTo(".timeline-row",
+      { opacity: 0, x: -28 },
+      { opacity: 1, x: 0, duration: 0.55, stagger: 0.08, ease: "power3.out" }, 0.35);
+  }, { dependencies: [isActive], scope: rootRef });
+
   return (
-    <section className="panel schedule-panel">
+    <section className="panel schedule-panel" ref={rootRef}>
       <div className="schedule-inner">
         <div className="schedule-header">
-          <p className="section-eyebrow">Upcoming & Recent</p>
-          <span className="accent-line" />
-          <h2 className="section-title">Match <span>Schedule</span></h2>
+          <p className="section-eyebrow schedule-eyebrow">Upcoming & Recent</p>
+          <span className="accent-line schedule-accent" />
+          <h2 className="section-title schedule-title">Match <span>Schedule</span></h2>
         </div>
 
         <div className="timeline">
