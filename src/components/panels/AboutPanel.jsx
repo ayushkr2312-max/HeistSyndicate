@@ -30,21 +30,12 @@ export default function AboutPanel({ isActive }) {
     tl.fromTo(".about-stat",
       { opacity: 0, y: 18 },
       { opacity: 1, y: 0, duration: 0.6, stagger: 0.08 }, 0.55);
-    tl.fromTo(".about-image-wrap",
-      { opacity: 0, x: -30 },
-      { opacity: 1, x: 0, duration: 0.85, ease: "power4.out" }, 0.1);
   }, { dependencies: [isActive], scope: rootRef });
 
   return (
     <section className="panel about-panel" ref={rootRef}>
       <div className="about-inner">
-        <div className="about-image-wrap">
-          <div className="about-image-bg" aria-hidden="true" />
-          <div className="about-image-accent" aria-hidden="true" />
-          <div className="about-image-label">
-            <span>Founded 2024</span>
-          </div>
-        </div>
+        <div className="about-image-wrap" aria-hidden="true" />
 
         <div className="about-text">
           <p className="section-eyebrow about-eyebrow">Who We Are</p>

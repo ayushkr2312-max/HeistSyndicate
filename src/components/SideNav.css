@@ -4,12 +4,14 @@
   top: 0;
   right: 0;
   bottom: 0;
-  width: 190px;
+  width: 143px;
   z-index: 1000;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 3rem;
   padding: 1.5rem 1.1rem 1.25rem 1.25rem;
+  padding-bottom: 18vh;
   pointer-events: none;
 
   background:
@@ -47,8 +49,8 @@
 .side-nav__top {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  padding-right: 0.25rem;
+  justify-content: center;
+  padding-right: 0;
 }
 
 .side-nav__logo {
@@ -64,6 +66,7 @@
 .side-nav__logo-img {
   height: 38px;
   width: auto;
+  visibility: hidden; /* hidden until fly element lands here (set visible by JS) */
   filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.75));
   transition: filter 0.35s ease, transform 0.35s cubic-bezier(0.34, 1.2, 0.64, 1);
 }
@@ -85,19 +88,7 @@
 
 /* Inner vertical progress track + indicator */
 .side-nav__track {
-  position: absolute;
-  top: 8px;
-  bottom: 8px;
-  right: -0.65rem;
-  width: 1px;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.04),
-    rgba(255, 255, 255, 0.14) 30%,
-    rgba(255, 255, 255, 0.14) 70%,
-    rgba(255, 255, 255, 0.04)
-  );
-  pointer-events: none;
+  display: none;
 }
 
 .side-nav__indicator {
@@ -249,40 +240,45 @@
   box-shadow: 0 0 10px rgba(255, 223, 0, 0.55);
 }
 
-/* ─── Bottom: socials ────────────────────────────────────────────────────── */
-.side-nav__bottom {
+/* ─── Left-edge social rail ──────────────────────────────────────────────── */
+.social-rail {
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  gap: 0.5rem;
-  padding-right: 0.1rem;
+  gap: 6px;
 }
 
-.side-nav__socials {
+.social-rail__btn {
   display: flex;
-  gap: 0.4rem;
-}
-
-.side-nav__social {
-  color: rgba(240, 240, 240, 0.55);
-  display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 1.7rem;
-  height: 1.7rem;
-  border: 1px solid transparent;
+  width: 52px;
+  height: 52px;
+  color: rgba(240, 240, 240, 0.55);
+  background: rgba(10, 10, 14, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-left: none;
+  border-right: 1px solid rgba(255, 223, 0, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   transition:
     color 0.3s ease,
+    background 0.3s ease,
     border-color 0.3s ease,
-    transform 0.35s cubic-bezier(0.34, 1.35, 0.64, 1),
-    background 0.3s ease;
+    width 0.3s cubic-bezier(0.34, 1.35, 0.64, 1);
+  text-decoration: none;
 }
 
-.side-nav__social:hover {
+.social-rail__btn:hover {
   color: var(--clr-accent);
-  border-color: rgba(255, 223, 0, 0.4);
-  background: rgba(255, 223, 0, 0.06);
-  transform: translateY(-2px);
+  background: rgba(255, 223, 0, 0.08);
+  border-color: rgba(255, 223, 0, 0.55);
+  width: 72px;
+  transform: translateX(0);
 }
 
 /* ─── Responsive: collapse to horizontal top strip ───────────────────────── */
@@ -303,11 +299,15 @@
     );
   }
 
+
   .side-nav::before { display: none; }
 
-  .side-nav__top,
-  .side-nav__bottom {
+  .side-nav__top {
     padding: 0;
+  }
+
+  .social-rail {
+    display: none;
   }
 
   .side-nav__logo-img { height: 28px; }
@@ -356,7 +356,7 @@
   .side-nav__tick,
   .side-nav__sub,
   .side-nav__sub-dot,
-  .side-nav__social {
+  .social-rail__btn {
     transition: none;
   }
 }

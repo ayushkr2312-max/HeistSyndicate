@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import "./HeroPanel.css";
-import finalsLogo from "../../assets/finals-logo.png";
+import orgLogo from "../../assets/Heist-Syndicate-Logo-4.png";
 
 gsap.registerPlugin(useGSAP);
 
@@ -121,9 +121,9 @@ export default function HeroPanel({ isActive }) {
 
   return (
     <section className="panel hero-panel" ref={containerRef}>
-      <div className="hero-badge" aria-hidden="true">
+      <div className={`hero-badge${isActive ? "" : " hero-badge--away"}`} aria-hidden="true">
         <span className="hero-badge__line" />
-        <img src={finalsLogo} alt="The Finals" className="hero-badge__logo" />
+        <img src={orgLogo} alt="" className="hero-badge__logo" />
         <span className="hero-badge__line" />
       </div>
 
