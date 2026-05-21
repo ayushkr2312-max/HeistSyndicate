@@ -1,0 +1,76 @@
+.sh-notes,
+.sh-results {
+  font-family: inherit;
+}
+
+.sh-notes__add,
+.sh-results__add {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.sh-notes__add input,
+.sh-results__add input,
+.sh-results__add select {
+  flex: 1;
+  min-width: 0;
+}
+
+.sh-notes__list,
+.sh-results__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sh-notes__item,
+.sh-results__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.5rem 0.6rem;
+  background: var(--hub-surface, #111);
+  border: 1px solid var(--hub-border, #2a2a2a);
+  border-radius: 2px;
+}
+
+.sh-notes__item--pinned {
+  border-color: var(--hub-accent, #c9a227);
+}
+
+.sh-notes__body,
+.sh-results__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.sh-notes__meta,
+.sh-results__meta {
+  font-size: 0.7rem;
+  opacity: 0.55;
+  margin-top: 0.2rem;
+}
+
+.sh-notes__text,
+.sh-results__score {
+  font-size: 0.85rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.sh-notes__actions,
+.sh-results__actions {
+  display: flex;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+
+.sh-empty {
+  font-size: 0.8rem;
+  opacity: 0.45;
+  padding: 0.5rem 0;
+}

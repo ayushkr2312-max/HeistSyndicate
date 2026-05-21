@@ -1,0 +1,30 @@
+export const THUB_KEYS = {
+  auth: 'thub-auth',
+  schedule: 'thub-schedule',
+  notes: 'thub-notes',
+  scouting: 'thub-scouting',
+  maps: 'thub-maps',
+  comps: 'thub-comps',
+  clips: 'thub-clips',
+  aim: 'thub-aim',
+  briefing: 'thub-briefing',
+  vods: 'thub-vods',
+  resources: 'thub-resources',
+  settings: 'thub-settings',
+  meta: 'thub-meta',
+  state: 'thub-state',
+}
+
+export const ALL_DATA_KEYS = [
+  THUB_KEYS.schedule,
+  THUB_KEYS.notes,
+  THUB_KEYS.scouting,
+  THUB_KEYS.maps,
+  THUB_KEYS.comps,
+  THUB_KEYS.clips,
+  THUB_KEYS.aim,
+  THUB_KEYS.briefing,
+  THUB_KEYS.vods,
+  THUB_KEYS.resources,
+  THUB_KEYS.settings,
+]

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /team-hub.html
+Disallow: /team-hub
