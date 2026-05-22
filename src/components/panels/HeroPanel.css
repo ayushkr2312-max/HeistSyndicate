@@ -223,3 +223,57 @@
   0%, 100% { opacity: 0.4; transform: translate(-50%, 0); }
   50% { opacity: 0.6; transform: translate(-50%, 4px); }
 }
+
+@media (max-width: 900px) {
+  .hero-badge {
+    top: calc(var(--mobile-nav-h) + 0.35rem + env(safe-area-inset-top, 0px));
+    gap: 0.65rem;
+  }
+
+  .hero-badge__line {
+    width: 28px;
+  }
+
+  .hero-badge__logo {
+    height: 36px;
+  }
+
+  .hero-content {
+    margin-top: 3vh;
+    padding: 0 0.75rem;
+  }
+
+  .hero-title__the {
+    letter-spacing: 0.35em;
+    font-size: clamp(0.75rem, 3vw, 0.9rem);
+  }
+
+  .hero-title__main {
+    font-size: clamp(2.75rem, 14vw, 4.5rem);
+    -webkit-text-stroke: 1.5px var(--clr-white);
+  }
+
+  .hero-title__sub {
+    font-size: clamp(1.45rem, 7vw, 2.25rem);
+  }
+
+  .hero-tagline {
+    margin-top: 1.75rem;
+    letter-spacing: 0.16em;
+    font-size: 0.62rem;
+    text-align: center;
+    padding: 0 0.5rem;
+  }
+
+  .hero-scroll-hint {
+    bottom: calc(0.75rem + var(--bottom-accent-bar-h) + env(safe-area-inset-bottom, 0px));
+  }
+
+  .hero-panel::after {
+    width: 100px;
+  }
+
+  .hero-deco-layer {
+    opacity: 0.65;
+  }
+}

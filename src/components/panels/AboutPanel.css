@@ -72,3 +72,37 @@
   clip-path: polygon(60px 0, 100% 0, 100% 100%, 0 100%);
   z-index: 5;
 }
+
+@media (max-width: 900px) {
+  .about-panel {
+    align-items: flex-start;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .about-inner {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    width: 100%;
+    padding-bottom: 0.5rem;
+  }
+
+  .about-image-wrap {
+    height: 160px;
+  }
+
+  .about-stats {
+    flex-wrap: wrap;
+    gap: 1rem 1.75rem;
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+  }
+
+  .about-stat__value {
+    font-size: 1.5rem;
+  }
+
+  .about-divider {
+    display: none;
+  }
+}

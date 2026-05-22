@@ -5,11 +5,11 @@ import "./PlayerSection.css";
 
 gsap.registerPlugin(useGSAP);
 
-const TINTS = {
-  PHANTOM: "180, 200, 255",
-  CIPHER:  "120, 235, 200",
-  VORTEX:  "255, 150, 120",
-};
+const TINTS = [
+  "180, 200, 255",
+  "120, 235, 200",
+  "255, 150, 120",
+];
 
 export default function PlayerSection({ player, index, total, isActive }) {
   const rootRef = useRef(null);
@@ -21,7 +21,7 @@ export default function PlayerSection({ player, index, total, isActive }) {
 
   const idxLabel = String(index + 1).padStart(2, "0");
   const totalLabel = String(total).padStart(2, "0");
-  const tint = TINTS[player.handle] || "255, 223, 0";
+  const tint = TINTS[index] || "255, 223, 0";
 
   useGSAP(() => {
     if (!isActive) return;

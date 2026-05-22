@@ -209,3 +209,53 @@
   clip-path: polygon(60px 0, 100% 0, 100% 100%, 0 100%);
   z-index: 5;
 }
+
+@media (max-width: 900px) {
+  .schedule-inner {
+    width: 100%;
+    gap: 1rem;
+    padding: 0.25rem 0 1.5rem;
+  }
+
+  .timeline-row {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-date {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    text-align: left;
+    padding: 0 0 0.35rem;
+    gap: 0.35rem 0.65rem;
+  }
+
+  .timeline-node {
+    display: none;
+  }
+
+  .timeline-card {
+    margin: 0 0 0.75rem;
+    padding: 0.65rem 0.85rem;
+  }
+
+  .timeline-card__top {
+    flex-wrap: wrap;
+    gap: 0.5rem 0.75rem;
+  }
+
+  .timeline-card__vs {
+    flex-wrap: wrap;
+  }
+
+  .timeline-card__us,
+  .timeline-card__opp {
+    font-size: 0.78rem;
+  }
+
+  .schedule-divider {
+    display: none;
+  }
+}

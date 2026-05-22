@@ -32,16 +32,10 @@
   content: "";
   position: absolute;
   left: 0;
-  top: 18%;
-  bottom: 18%;
-  width: 1px;
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    rgba(255, 223, 0, 0.18) 18%,
-    rgba(255, 223, 0, 0.18) 82%,
-    transparent
-  );
+  top: 0;
+  bottom: 0;
+  width: 0.15px;
+  background: var(--clr-accent);
   pointer-events: none;
 }
 
@@ -82,40 +76,8 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.05rem;
+  gap: 0.85rem;
   padding-right: 0.25rem;
-}
-
-/* Inner vertical progress track + indicator */
-.side-nav__track {
-  display: none;
-}
-
-.side-nav__indicator {
-  position: absolute;
-  right: -0.78rem;
-  top: 0;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--clr-accent);
-  transform: translateY(-50%);
-  box-shadow:
-    0 0 0 3px rgba(255, 223, 0, 0.16),
-    0 0 14px rgba(255, 223, 0, 0.55);
-  pointer-events: none;
-}
-
-.side-nav__indicator::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 3px;
-  height: 3px;
-  border-radius: 50%;
-  background: #1a1a0a;
-  transform: translate(-50%, -50%);
 }
 
 .side-nav__item {
@@ -290,7 +252,11 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 0.5rem 0.85rem;
+    padding:
+      max(0.5rem, env(safe-area-inset-top, 0px))
+      max(0.85rem, env(safe-area-inset-right, 0px))
+      0.5rem
+      max(0.85rem, env(safe-area-inset-left, 0px));
     background: linear-gradient(
       to bottom,
       rgba(10, 10, 14, 0.92) 0%,
@@ -304,6 +270,7 @@
 
   .side-nav__top {
     padding: 0;
+    flex-shrink: 0;
   }
 
   .social-rail {
@@ -319,15 +286,26 @@
     flex-wrap: nowrap;
     overflow-x: auto;
     padding: 0;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    max-width: calc(100vw - 5.5rem);
   }
 
-  .side-nav__track,
-  .side-nav__indicator { display: none; }
+  .side-nav__list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .side-nav__item {
+    flex-shrink: 0;
+    scroll-snap-align: start;
+  }
 
   .side-nav__link {
     grid-template-columns: auto;
     grid-template-rows: auto;
-    padding: 0.35rem 0.55rem;
+    padding: 0.5rem 0.65rem;
+    min-height: 44px;
     gap: 0.35rem;
   }
 
@@ -352,7 +330,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .side-nav__link,
-  .side-nav__indicator,
   .side-nav__tick,
   .side-nav__sub,
   .side-nav__sub-dot,

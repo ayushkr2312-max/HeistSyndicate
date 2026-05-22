@@ -1,7 +1,3 @@
-import { useEffect, useRef } from "react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-
 import logo from "../assets/Heist-Syndicate-Logo-4.png";
 import "./SideNav.css";
 
@@ -28,46 +24,9 @@ export default function SideNav({
   onNavigate,
   navLogoRef,
 }) {
-  const railRef = useRef(null);
-  const indicatorRef = useRef(null);
-  const itemRefs = useRef({});
-
-  useGSAP(() => {
-    const indicator = indicatorRef.current;
-    const railEl = railRef.current;
-    const activeEl = itemRefs.current[activeKey];
-    if (!indicator || !railEl || !activeEl) return;
-
-    const railBox = railEl.getBoundingClientRect();
-    const activeBox = activeEl.getBoundingClientRect();
-    const top = activeBox.top - railBox.top + activeBox.height / 2;
-
-    gsap.to(indicator, {
-      top,
-      duration: 0.52,
-      ease: "power3.inOut",
-    });
-  }, { dependencies: [activeKey], scope: railRef });
-
-  useEffect(() => {
-    const onResize = () => {
-      const indicator = indicatorRef.current;
-      const railEl = railRef.current;
-      const activeEl = itemRefs.current[activeKey];
-      if (!indicator || !railEl || !activeEl) return;
-      const railBox = railEl.getBoundingClientRect();
-      const activeBox = activeEl.getBoundingClientRect();
-      gsap.set(indicator, {
-        top: activeBox.top - railBox.top + activeBox.height / 2,
-      });
-    };
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, [activeKey]);
-
   return (
     <>
-      <nav className="side-nav" aria-label="Site navigation" ref={railRef}>
+      <nav className="side-nav" aria-label="Site navigation">
         <div className="side-nav__top">
           <button
             type="button"
@@ -80,15 +39,11 @@ export default function SideNav({
         </div>
 
         <ul className="side-nav__list" role="list">
-          <span className="side-nav__track" aria-hidden="true" />
-          <span className="side-nav__indicator" aria-hidden="true" ref={indicatorRef} />
-
           {items.map((item) => {
             const isActive = item.key === activeKey;
             return (
               <li
                 key={item.key}
-                ref={(el) => { itemRefs.current[item.key] = el; }}
                 className={`side-nav__item ${isActive ? "side-nav__item--active" : ""}`}
               >
                 <button

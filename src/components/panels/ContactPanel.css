@@ -204,3 +204,40 @@
   clip-path: polygon(60px 0, 100% 0, 100% 100%, 0 100%);
   z-index: 5;
 }
+
+@media (max-width: 900px) {
+  .contact-panel {
+    align-items: flex-start;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .contact-inner {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+    width: 100%;
+    padding-bottom: 0.5rem;
+  }
+
+  .contact-form__row {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-field input,
+  .contact-field textarea {
+    font-size: 16px;
+  }
+
+  .contact-socials-wrap {
+    padding-top: 0;
+  }
+
+  .contact-submit {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .contact-divider {
+    display: none;
+  }
+}

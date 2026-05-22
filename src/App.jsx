@@ -39,8 +39,8 @@ const SECTION_PATH = [
 
 const PLAYERS = [
   {
-    handle: "PHANTOM",
-    name: "Alex Reyes",
+    handle: "PLAYER 1",
+    name: "",
     role: "IGL / Rifler",
     country: "US",
     quote: "I read the lobby before the lobby reads itself.",
@@ -48,8 +48,8 @@ const PLAYERS = [
     socials: { x: "#", twitch: "#" },
   },
   {
-    handle: "CIPHER",
-    name: "Jordan Lee",
+    handle: "PLAYER 2",
+    name: "",
     role: "AWPer",
     country: "UK",
     quote: "One bullet. One window. One outcome.",
@@ -57,8 +57,8 @@ const PLAYERS = [
     socials: { x: "#", twitch: "#" },
   },
   {
-    handle: "VORTEX",
-    name: "Sam Torres",
+    handle: "PLAYER 3",
+    name: "",
     role: "Entry Fragger",
     country: "CA",
     quote: "First through the door, last to apologize.",
@@ -89,13 +89,19 @@ export default function App() {
   const logoZone = (i) => (i === 0 ? "hero" : i === 1 ? "about" : "nav");
 
   const calcHeroCenter = () => {
-    const navW = window.innerWidth <= 900 ? 0 : 143;
-    return { x: (window.innerWidth - navW) / 2, y: 28 + 22, h: 44 };
+    const vw = window.innerWidth;
+    const isMobile = vw <= 900;
+    const navW = isMobile ? 0 : 143;
+    const badgeTop = isMobile ? 56 : 28;
+    return { x: (vw - navW) / 2, y: badgeTop + 22, h: 44 };
   };
 
   const calcAboutCenter = () => {
     const vw = window.innerWidth;
     const vh = window.innerHeight;
+    if (vw <= 900) {
+      return { x: vw / 2, y: vh * 0.36, h: 180 };
+    }
     const innerW = Math.min(1100, vw * 0.9);
     const gap = vw * 0.05;
     const colW = (innerW - gap) / 2;
@@ -250,6 +256,8 @@ export default function App() {
         alt=""
         aria-hidden="true"
       />
+
+      <div className="bottom-accent-bar" aria-hidden="true" />
     </>
   );
 }
